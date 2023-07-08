@@ -1,1 +1,1 @@
-console.log('sum of numbers')
+console.log(' new i am modifing it to multiplcation of numbers')
