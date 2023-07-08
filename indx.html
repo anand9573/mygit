@@ -26,6 +26,7 @@
       <li class="list-group-item">Item 2</li>
       <li class="list-group-item">Item 3</li>
       <li class="list-group-item">Item 4</li>
+      <li>Item-5</li>
     </ul>
    </div>
   </div>
@@ -33,13 +34,14 @@
     const header=document.getElementById('main-header')
     header.style.borderBottom='solid 3px #000'
     const items=document.getElementsByClassName('list-group-item');
-    for(let i=0;i<items.length;i++){
+    const li=document.getElementsByTagName('li');
+    for(let i=0;i<li.length;i++){
         if (i!==2){
-            items[i].style.backgroundColor='#f4f4f4'
+            li[i].style.backgroundColor='#f4f4f4'
         }else if(i===2){
-            items[i].style.backgroundColor='green'
+            li[i].style.backgroundColor='green'
         }
-        items[i].style.fontWeight='bold'
+        li[i].style.fontWeight='bold'
         }
   </script>
 
