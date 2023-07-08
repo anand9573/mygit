@@ -32,13 +32,15 @@
   <script>
     const header=document.getElementById('main-header')
     header.style.borderBottom='solid 3px #000'
-    const h=document.getElementById('additem')
-    console.log(h)
-    h.style.color='green'
-    h.style.fontWeight='bold'
-    // item.style.color="blue"
-
-
+    const items=document.getElementsByClassName('list-group-item');
+    for(let i=0;i<items.length;i++){
+        if (i!==2){
+            items[i].style.backgroundColor='#f4f4f4'
+        }else if(i===2){
+            items[i].style.backgroundColor='green'
+        }
+        items[i].style.fontWeight='bold'
+        }
   </script>
 
 </body>
