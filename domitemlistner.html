@@ -24,7 +24,8 @@
        <div id="main" class="card card-body">
         <h2 class="title">Add Items</h2>
         <form id="addForm" class="form-inline mb-3">
-          <input type="text" class="form-control mr-2" id="item">
+          <input type="text" class="addedtext form-control mr-2" id="item" placeholder="Add text">
+          <input type="text" class="addedtext form-control mr-2" id="Description" placeholder="Add Description">
           <input type="submit" class="btn btn-dark" value="Submit">
         </form>
         <h2 class="title">Items</h2>
@@ -59,11 +60,16 @@
         function addItem(e){
             
             e.preventDefault();
-            var newItem=document.getElementById('item').value;
+            // var newItem=document.getElementById('item').value;
+            var newItem=document.getElementsByClassName('addedtext')
+            console.log(newItem)
+            
+
             var li=document.createElement('li');
             li.className='list-group-item';
-            li.appendChild(document.createTextNode(newItem));
+            li.appendChild(document.createTextNode(newItem[0].value+' '+newItem[1].value));
             itemList.appendChild(li);
+
             var deletebtn=document.createElement('button')
             var editbtn=document.createElement('button')
             deletebtn.className='btn btn-danger btn-sm float-right delete m-1'
