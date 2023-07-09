@@ -33,16 +33,17 @@
   <script>
     const header=document.getElementById('main-header')
     header.style.borderBottom='solid 3px #000'
-    const items=document.getElementsByClassName('list-group-item');
     const li=document.getElementsByTagName('li');
-    for(let i=0;i<li.length;i++){
-        if (i!==2){
-            li[i].style.backgroundColor='#f4f4f4'
-        }else if(i===2){
-            li[i].style.backgroundColor='green'
-        }
-        li[i].style.fontWeight='bold'
-        }
+const itemss=document.querySelectorAll('li');
+for(i=0;i<itemss.length;i++){
+  if(i===1){
+    itemss[i].style.color='green'
+  }else if(i%2==0){
+    itemss[i].style.backgroundColor='green'
+  }
+  itemss[i].style.fontWeight='bold'
+}
+
   </script>
 
 </body>
