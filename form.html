@@ -26,10 +26,10 @@
                 <input type="date" id="date" name="date" class="form-control mb-2"  min="2023-07-01" max="2025-07-31" required>
                 <label for="datetime" class="form-label text-white">Appointment Time:</label>
                 <input type="time" id="time" name="time" class="form-control" min="09:00" max="17:00" required>
-                <input style="font-weight: bold;font-size: x-large;" type="submit" class="btn btn-dark bg-primary text-white mt-3 form-control" id="submit" value="submit" data-bs-toggle="modal" data-bs-target="#modal">
+                <input style="font-weight: bold;font-size: x-large;" type="submit" class="btn btn-dark bg-primary text-white mt-3 form-control" id="submit" value="submit">
         </form>
           </div>  
-          <div  class="book text-white bg-warning mt-3 p-3">
+          <div  class="book text-white mt-3 p-3" id="'book" style="background-color: black;">
             <h2 id="bookingappointment"></h2>
             <p id="booking-data"></p>
           </div>
@@ -54,17 +54,17 @@ var bookingData = document.getElementById("booking-data");
     date: date,
     time: time
   };
-  bookingtext='Name'+" : "+booking.name+'<br>'+  'Email'+" : "+booking.email+'<br>'+
- + 'Phone'+" : "+booking.phone+'<br>'
- + 'Date'+" : "+booking.date+'<br>'
-  +'Time'+" : "+booking.time+'<br>'
-
   localStorage.setItem("booking", JSON.stringify(booking));
-  var h2=document.getElementById('bookingappointment')
   var bookingdata=document.getElementById('booking-data')
-  bookingData.innerHTML=bookingtext
+  var h2=document.getElementById('bookingappointment')
   h2.innerHTML='Your Appontment'
-  var book=document.getElementsByClassName('book')
+  bookingdata.innerHTML = `
+    <p><strong>Name:</strong> ${booking.name}</p>
+    <p><strong>Email:</strong> ${booking.email}</p>
+    <p><strong>Phone:</strong> ${booking.phone}</p>
+    <p><strong>Date:</strong> ${booking.date}</p>
+    <p><strong>Time:</strong> ${booking.time}</p>
+  `;
 
 });
 
