@@ -54,6 +54,12 @@ var bookingData = document.getElementById("booking-data");
     date: date,
     time: time
   };
+
+  localStorage.setItem("Name", booking.name);
+  localStorage.setItem("Email", booking.email);
+  localStorage.setItem("Phone", booking.phone);
+  localStorage.setItem("Date", booking.date);
+  localStorage.setItem("Time", booking.time);
   localStorage.setItem("booking", JSON.stringify(booking));
   var bookingdata=document.getElementById('booking-data')
   var h2=document.getElementById('bookingappointment')
