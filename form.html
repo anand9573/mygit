@@ -28,54 +28,75 @@
                 <input type="time" id="time" name="time" class="form-control" min="09:00" max="17:00" required>
                 <input style="font-weight: bold;font-size: x-large;" type="submit" class="btn btn-dark bg-primary text-white mt-3 form-control" id="submit" value="submit">
         </form>
-          </div>  
-          <div  class="book text-white mt-3 p-3" id="'book" style="background-color: black;">
-            <h2 id="bookingappointment"></h2>
-            <p id="booking-data"></p>
+        </div>  
+          <div class="book text-white mt-3 p-3" id="booking" style="background-color: black;">
+            <ol style="list-style-type: none;">
+              <li class="items">
+                <h2 id="bookingappointment"></h2>
+                <p id="booking-data"></p>
+              </li>
+            </ol>
           </div>
-          <footer>
+          <footer class="bg-dark text-white mt-2 d-flex justify-content-center">
             <p>&copy; 2023 Booking Appointment Website</p>
           </footer> 
-  </div>
-    <script>
-        var form = document.getElementById("form");
-var bookingData = document.getElementById("booking-data");
-        form.addEventListener('submit', e=> {
-  e.preventDefault();
-  var name = document.getElementById("name").value;
-  var email = document.getElementById("email").value;
-  var phone = document.getElementById("phone").value;
-  var date = document.getElementById("date").value;
-  var time = document.getElementById("time").value;
-  var booking = {
-    name: name,
-    email: email,
-    phone: phone,
-    date: date,
-    time: time
-  };
+          </div>
+          
+<script>
+      class storage {
+      constructor(name, email, phone, date, time) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.date = date;
+        this.time = time;
+      }
+    }
 
-  localStorage.setItem("Name", booking.name);
-  localStorage.setItem("Email", booking.email);
-  localStorage.setItem("Phone", booking.phone);
-  localStorage.setItem("Date", booking.date);
-  localStorage.setItem("Time", booking.time);
-  localStorage.setItem("booking", JSON.stringify(booking));
-  var bookingdata=document.getElementById('booking-data')
-  var h2=document.getElementById('bookingappointment')
-  h2.innerHTML='Your Appontment'
-  bookingdata.innerHTML = `
-    <p><strong>Name:</strong> ${booking.name}</p>
-    <p><strong>Email:</strong> ${booking.email}</p>
-    <p><strong>Phone:</strong> ${booking.phone}</p>
-    <p><strong>Date:</strong> ${booking.date}</p>
-    <p><strong>Time:</strong> ${booking.time}</p>
-  `;
+    var form = document.getElementById("form");
+    var bookingData = document.getElementById("booking-data");
 
-});
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var phone = document.getElementById("phone").value;
+      var date = document.getElementById("date").value;
+      var time = document.getElementById("time").value;
 
-    </script>
-    
-   
+      var person = new storage(name, email, phone, date, time);
+
+      var peopleData = localStorage.getItem("people");
+      var people = JSON.parse(peopleData) || [];
+
+      people.push(person);
+      localStorage.setItem("people", JSON.stringify(people));
+
+      var ul = document.createElement("ul");
+      bookingData.innerHTML = "";
+      for (var i = 0; i < people.length; i++) {
+        var li = document.createElement("li");
+        li.innerHTML = `
+        <button class="delete float-right bg-danger" data-index="${i}">Delete</button>
+          <p><strong>Name:</strong> ${people[i].name}</p>
+          <p><strong>Email:</strong> ${people[i].email}</p>
+          <p><strong>Phone:</strong> ${people[i].phone}</p>
+          <p><strong>Date:</strong> ${people[i].date}</p>
+          <p><strong>Time:</strong> ${people[i].time}</p>
+        `;
+        ul.appendChild(li);
+      }
+      bookingData.appendChild(ul);
+      var deleteButtons = document.getElementsByClassName("delete");
+      for (var i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener("click", function() {
+          var index = this.getAttribute("data-index");
+          people.splice(index, 1);
+          localStorage.setItem("people", JSON.stringify(people));
+          this.parentElement.remove();
+        });
+      }
+    });
+</script>
 </body>
 </html>
